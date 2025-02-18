@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:weather_app/core/constants/cities.dart';
+import 'package:weather_app/features/weather/views/weather_screen.dart';
 import 'package:weather_app/theme/app_theme.dart';
 
 void main() {
@@ -22,7 +24,9 @@ class MyApp extends StatelessWidget {
           title: const Text('Demo'),
         ),
         body: const Center(
-          child: Text('Hello, World!'),
+          child: WeatherScreen(
+            city: Cities.kaohsiung,
+          ),
         ),
       ),
     );
