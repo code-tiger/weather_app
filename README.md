@@ -24,7 +24,7 @@ flutter build web
 
 
 - [Building a web app with Flutter](https://docs.flutter.dev/platform-integration/web/building)
-- [OpenWeatherMap API](https://openweathermap.org/api)
+- [Open-Meteo API](https://open-meteo.com/en/docs)
 - [online documentation](https://docs.flutter.dev/)
 - [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
 - [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
