@@ -19,15 +19,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: AppTheme.lightTheme,
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Demo'),
-        ),
-        body: const Center(
-          child: WeatherScreen(
-            city: Cities.kaohsiung,
-          ),
-        ),
+      home: WeatherScreen(
+        city: Cities.kaohsiung,
       ),
     );
   }
