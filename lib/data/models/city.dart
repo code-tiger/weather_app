@@ -4,7 +4,7 @@ part 'city.freezed.dart';
 
 @freezed
 class City with _$City {
-  const factory City({
+  factory City({
     required String name,
     required double latitude,
     required double longitude,

@@ -116,7 +116,7 @@ class __$$CityImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$CityImpl implements _City {
-  const _$CityImpl(
+  _$CityImpl(
       {required this.name, required this.latitude, required this.longitude});
 
   @override
@@ -156,7 +156,7 @@ class _$CityImpl implements _City {
 }
 
 abstract class _City implements City {
-  const factory _City(
+  factory _City(
       {required final String name,
       required final double latitude,
       required final double longitude}) = _$CityImpl;
