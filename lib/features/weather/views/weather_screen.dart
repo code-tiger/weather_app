@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:weather_app/data/models/city.dart';
 import 'package:weather_app/data/models/weather/weather_properties.dart';
+import 'package:weather_app/data/models/weather/weather_properties_daily.dart';
+import 'package:weather_app/data/models/weather/weather_properties_hourly.dart';
 import 'package:weather_app/data/models/weather/weather_units.dart';
 import 'package:weather_app/features/weather/controllers/weather_screen_controller.dart';
 import 'package:weather_app/data/models/weather/weather_datum.dart';
@@ -86,6 +88,14 @@ class WeatherDatumScreen extends StatelessWidget {
               weatherDatum.currentWeather,
               weatherDatum.weatherUnits,
             ),
+            _build7DayWeatherDetail(
+              weatherDatum.dailyWeather,
+              weatherDatum.weatherUnits,
+            ),
+            _build7HoursWeatherDetail(
+              weatherDatum.hourlyWeather,
+              weatherDatum.weatherUnits,
+            ),
           ],
         ),
       ),
@@ -141,5 +151,19 @@ class WeatherDatumScreen extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  Widget _build7DayWeatherDetail(
+    WeatherPropertiesDaily? dailyWeather,
+    WeatherUnits weatherUnits,
+  ) {
+    return const SizedBox.shrink();
+  }
+
+  Widget _build7HoursWeatherDetail(
+    WeatherPropertiesHourly? hourlyWeather,
+    WeatherUnits weatherUnits,
+  ) {
+    return const SizedBox.shrink();
   }
 }
