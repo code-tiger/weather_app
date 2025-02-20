@@ -7,7 +7,7 @@ part of 'weather_screen_controller.dart';
 // **************************************************************************
 
 String _$weatherScreenControllerHash() =>
-    r'5838be9879e519880824ff6dc5d2949f6b6a3658';
+    r'54f93b65306d967b110a12a57f6c98aa715df3a5';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -31,10 +31,10 @@ class _SystemHash {
 }
 
 abstract class _$WeatherScreenController
-    extends BuildlessAutoDisposeAsyncNotifier<String> {
+    extends BuildlessAutoDisposeAsyncNotifier<WeatherDatum> {
   late final City city;
 
-  FutureOr<String> build(
+  FutureOr<WeatherDatum> build(
     City city,
   );
 }
@@ -44,7 +44,7 @@ abstract class _$WeatherScreenController
 const weatherScreenControllerProvider = WeatherScreenControllerFamily();
 
 /// See also [WeatherScreenController].
-class WeatherScreenControllerFamily extends Family<AsyncValue<String>> {
+class WeatherScreenControllerFamily extends Family<AsyncValue<WeatherDatum>> {
   /// See also [WeatherScreenController].
   const WeatherScreenControllerFamily();
 
@@ -84,7 +84,7 @@ class WeatherScreenControllerFamily extends Family<AsyncValue<String>> {
 /// See also [WeatherScreenController].
 class WeatherScreenControllerProvider
     extends AutoDisposeAsyncNotifierProviderImpl<WeatherScreenController,
-        String> {
+        WeatherDatum> {
   /// See also [WeatherScreenController].
   WeatherScreenControllerProvider(
     City city,
@@ -115,7 +115,7 @@ class WeatherScreenControllerProvider
   final City city;
 
   @override
-  FutureOr<String> runNotifierBuild(
+  FutureOr<WeatherDatum> runNotifierBuild(
     covariant WeatherScreenController notifier,
   ) {
     return notifier.build(
@@ -140,7 +140,7 @@ class WeatherScreenControllerProvider
   }
 
   @override
-  AutoDisposeAsyncNotifierProviderElement<WeatherScreenController, String>
+  AutoDisposeAsyncNotifierProviderElement<WeatherScreenController, WeatherDatum>
       createElement() {
     return _WeatherScreenControllerProviderElement(this);
   }
@@ -162,14 +162,14 @@ class WeatherScreenControllerProvider
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 mixin WeatherScreenControllerRef
-    on AutoDisposeAsyncNotifierProviderRef<String> {
+    on AutoDisposeAsyncNotifierProviderRef<WeatherDatum> {
   /// The parameter `city` of this provider.
   City get city;
 }
 
 class _WeatherScreenControllerProviderElement
     extends AutoDisposeAsyncNotifierProviderElement<WeatherScreenController,
-        String> with WeatherScreenControllerRef {
+        WeatherDatum> with WeatherScreenControllerRef {
   _WeatherScreenControllerProviderElement(super.provider);
 
   @override
