@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:weather_app/core/utils/datetime_helper.dart';
 import 'package:weather_app/core/utils/weather_helper.dart';

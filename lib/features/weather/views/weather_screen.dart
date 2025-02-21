@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:weather_app/core/widgets/main_divider.dart';
 import 'package:weather_app/data/models/city.dart';
-import 'package:weather_app/data/models/weather/weather_properties.dart';
-import 'package:weather_app/data/models/weather/weather_properties_daily.dart';
-import 'package:weather_app/data/models/weather/weather_properties_hourly.dart';
-import 'package:weather_app/data/models/weather/weather_units.dart';
 import 'package:weather_app/features/weather/controllers/weather_screen_controller.dart';
 import 'package:weather_app/data/models/weather/weather_datum.dart';
 import 'package:weather_app/features/weather/widgets/current_weather_overview.dart';
+import 'package:weather_app/features/weather/widgets/current_weather_details.dart';
 import 'package:weather_app/features/weather/widgets/daily_weather_overview.dart';
 import 'package:weather_app/features/weather/widgets/hourly_weather_overview.dart';
-import 'package:weather_app/features/weather/widgets/weather_info_block.dart';
+import 'package:weather_app/features/weather/widgets/location.dart';
 
 class WeatherScreen extends ConsumerWidget {
   final City city;
@@ -53,10 +51,6 @@ class WeatherDatumScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
@@ -93,19 +87,16 @@ class WeatherDatumScreen extends StatelessWidget {
             DailyWeatherOverview(
               weatherPropertiesDaily: weatherDatum.dailyWeather,
             ),
-            // _build7HoursWeatherDetail(
-            //   weatherDatum.hourlyWeather,
-            //   weatherDatum.weatherUnits,
-            // ),
-
-            // _buildCurrentWeatherDetail(
-            //   weatherDatum.currentWeather,
-            //   weatherDatum.weatherUnits,
-            // ),
-            // _build7DayWeatherDetail(
-            //   weatherDatum.dailyWeather,
-            //   weatherDatum.weatherUnits,
-            // ),
+            const SizedBox(height: 16),
+            CurrentWeatherDetails(
+              weatherProperties: weatherDatum.currentWeather,
+              weatherUnits: weatherDatum.weatherUnits,
+            ),
+            const SizedBox(height: 16),
+            Location(
+              latitude: weatherDatum.latitude,
+              longitude: weatherDatum.longitude,
+            ),
           ],
         ),
       ),
@@ -124,9 +115,7 @@ class WeatherDatumScreen extends StatelessWidget {
           ),
         ),
         SizedBox(height: 4),
-        Divider(
-          color: Color.fromRGBO(255, 255, 255, 0.5),
-        ),
+        MainDivider(),
       ],
     );
   }

@@ -69,7 +69,10 @@ class WeatherProperties with _$WeatherProperties {
     return '$windSpeed10m $unit';
   }
 
-  String getWindDirection10m(String unit) {
-    return '$windDirection10m $unit';
+  String getWindDirection10m() {
+    final degree = double.tryParse(windDirection10m) ?? 0;
+    final directions = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+    final index = ((degree + 22.5) % 360) ~/ 45;
+    return directions[index];
   }
 }
