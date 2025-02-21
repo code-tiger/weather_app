@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app/core/constants/cities.dart';
 import 'package:weather_app/data/models/city.dart';
 import 'package:weather_app/data/models/weather/weather_properties.dart';
 import 'package:weather_app/data/models/weather/weather_units.dart';
 
 class CurrentWeatherOverview extends StatelessWidget {
   final City city;
-
+  final Function(City?) onCityChanged;
   final WeatherProperties? currentWeather;
   final WeatherUnits? weatherUnits;
   final String? timezoneAbbreviation;
@@ -13,6 +14,7 @@ class CurrentWeatherOverview extends StatelessWidget {
   const CurrentWeatherOverview({
     super.key,
     required this.city,
+    required this.onCityChanged,
     this.currentWeather,
     this.weatherUnits,
     this.timezoneAbbreviation,
@@ -28,6 +30,7 @@ class CurrentWeatherOverview extends StatelessWidget {
       height: MediaQuery.of(context).size.height * 0.7,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildUpperSection(),
           _buildLowerSection(),
@@ -48,34 +51,37 @@ class CurrentWeatherOverview extends StatelessWidget {
   }
 
   Widget _buildHeader(City city) {
-    return Row(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              city.name,
-              style: const TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            Text(
-              city.region,
-              style: const TextStyle(
-                fontSize: 16,
-                color: Colors.white70,
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(width: 16),
-        IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.map),
+        _buildDropdown(),
+        Text(
+          city.region,
+          style: const TextStyle(
+            fontSize: 16,
+            color: Colors.white70,
+          ),
         ),
       ],
+    );
+  }
+
+  Widget _buildDropdown() {
+    return DropdownButton<City>(
+      value: city,
+      dropdownColor: Colors.black,
+      style: const TextStyle(
+        color: Colors.white,
+        fontSize: 22,
+        fontWeight: FontWeight.bold,
+      ),
+      items: Cities.allCities
+          .map((city) => DropdownMenuItem<City>(
+                value: city,
+                child: Text(city.name),
+              ))
+          .toList(),
+      onChanged: onCityChanged,
     );
   }
 
@@ -85,12 +91,7 @@ class CurrentWeatherOverview extends StatelessWidget {
       return const SizedBox.shrink();
     }
 
-    return Row(
-      children: [
-        const Text('Recorded at : '),
-        Text(currentWeather!.getTime(timezoneAbbreviation ?? '')),
-      ],
-    );
+    return Text(currentWeather!.getTime(timezoneAbbreviation ?? ''));
   }
 
   Widget _buildLowerSection() {

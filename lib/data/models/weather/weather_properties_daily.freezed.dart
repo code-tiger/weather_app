@@ -20,7 +20,7 @@ mixin _$WeatherPropertiesDaily {
   List<double> get temperature2mMax => throw _privateConstructorUsedError;
   List<double> get temperature2mMin => throw _privateConstructorUsedError;
   List<double> get uvIndexMax => throw _privateConstructorUsedError;
-  List<int> get precipitationSum => throw _privateConstructorUsedError;
+  List<double> get precipitationSum => throw _privateConstructorUsedError;
   List<int> get precipitationProbabilityMax =>
       throw _privateConstructorUsedError;
   List<double> get windSpeed10mMax => throw _privateConstructorUsedError;
@@ -44,7 +44,7 @@ abstract class $WeatherPropertiesDailyCopyWith<$Res> {
       List<double> temperature2mMax,
       List<double> temperature2mMin,
       List<double> uvIndexMax,
-      List<int> precipitationSum,
+      List<double> precipitationSum,
       List<int> precipitationProbabilityMax,
       List<double> windSpeed10mMax,
       List<double> windGusts10mMax});
@@ -95,7 +95,7 @@ class _$WeatherPropertiesDailyCopyWithImpl<$Res,
       precipitationSum: null == precipitationSum
           ? _value.precipitationSum
           : precipitationSum // ignore: cast_nullable_to_non_nullable
-              as List<int>,
+              as List<double>,
       precipitationProbabilityMax: null == precipitationProbabilityMax
           ? _value.precipitationProbabilityMax
           : precipitationProbabilityMax // ignore: cast_nullable_to_non_nullable
@@ -126,7 +126,7 @@ abstract class _$$WeatherPropertiesDailyImplCopyWith<$Res>
       List<double> temperature2mMax,
       List<double> temperature2mMin,
       List<double> uvIndexMax,
-      List<int> precipitationSum,
+      List<double> precipitationSum,
       List<int> precipitationProbabilityMax,
       List<double> windSpeed10mMax,
       List<double> windGusts10mMax});
@@ -176,7 +176,7 @@ class __$$WeatherPropertiesDailyImplCopyWithImpl<$Res>
       precipitationSum: null == precipitationSum
           ? _value._precipitationSum
           : precipitationSum // ignore: cast_nullable_to_non_nullable
-              as List<int>,
+              as List<double>,
       precipitationProbabilityMax: null == precipitationProbabilityMax
           ? _value._precipitationProbabilityMax
           : precipitationProbabilityMax // ignore: cast_nullable_to_non_nullable
@@ -201,7 +201,7 @@ class _$WeatherPropertiesDailyImpl extends _WeatherPropertiesDaily {
       required final List<double> temperature2mMax,
       required final List<double> temperature2mMin,
       required final List<double> uvIndexMax,
-      required final List<int> precipitationSum,
+      required final List<double> precipitationSum,
       required final List<int> precipitationProbabilityMax,
       required final List<double> windSpeed10mMax,
       required final List<double> windGusts10mMax})
@@ -249,9 +249,9 @@ class _$WeatherPropertiesDailyImpl extends _WeatherPropertiesDaily {
     return EqualUnmodifiableListView(_uvIndexMax);
   }
 
-  final List<int> _precipitationSum;
+  final List<double> _precipitationSum;
   @override
-  List<int> get precipitationSum {
+  List<double> get precipitationSum {
     if (_precipitationSum is EqualUnmodifiableListView)
       return _precipitationSum;
     // ignore: implicit_dynamic_type
@@ -339,7 +339,7 @@ abstract class _WeatherPropertiesDaily extends WeatherPropertiesDaily {
           required final List<double> temperature2mMax,
           required final List<double> temperature2mMin,
           required final List<double> uvIndexMax,
-          required final List<int> precipitationSum,
+          required final List<double> precipitationSum,
           required final List<int> precipitationProbabilityMax,
           required final List<double> windSpeed10mMax,
           required final List<double> windGusts10mMax}) =
@@ -355,7 +355,7 @@ abstract class _WeatherPropertiesDaily extends WeatherPropertiesDaily {
   @override
   List<double> get uvIndexMax;
   @override
-  List<int> get precipitationSum;
+  List<double> get precipitationSum;
   @override
   List<int> get precipitationProbabilityMax;
   @override

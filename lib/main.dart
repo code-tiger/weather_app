@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:weather_app/core/constants/cities.dart';
 import 'package:weather_app/features/weather/views/weather_screen.dart';
 import 'package:weather_app/theme/app_theme.dart';
 
@@ -19,9 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: AppTheme.darkTheme,
-      home: WeatherScreen(
-        city: Cities.taichung,
-      ),
+      home: WeatherScreen(),
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:weather_app/core/constants/cities.dart';
 import 'package:weather_app/core/widgets/main_divider.dart';
 import 'package:weather_app/data/models/city.dart';
 import 'package:weather_app/features/weather/controllers/weather_screen_controller.dart';
@@ -10,14 +11,27 @@ import 'package:weather_app/features/weather/widgets/daily_weather_overview.dart
 import 'package:weather_app/features/weather/widgets/hourly_weather_overview.dart';
 import 'package:weather_app/features/weather/widgets/location.dart';
 
-class WeatherScreen extends ConsumerWidget {
-  final City city;
-
-  const WeatherScreen({super.key, required this.city});
+class WeatherScreen extends ConsumerStatefulWidget {
+  const WeatherScreen({
+    super.key,
+  });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final asyncData = ref.watch(weatherScreenControllerProvider(city));
+  ConsumerState<WeatherScreen> createState() => _WeatherScreenState();
+}
+
+class _WeatherScreenState extends ConsumerState<WeatherScreen> {
+  late City _selectedCity;
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedCity = Cities.taipei;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final asyncData = ref.watch(weatherScreenControllerProvider(_selectedCity));
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -43,7 +57,8 @@ class WeatherScreen extends ConsumerWidget {
             ),
             children: [
               CurrentWeatherOverview(
-                city: city,
+                city: _selectedCity,
+                onCityChanged: _handleCityChanged,
                 currentWeather: weatherDatum.currentWeather,
                 weatherUnits: weatherDatum.weatherUnits,
                 timezoneAbbreviation: weatherDatum.timezoneAbbreviation,
@@ -84,6 +99,12 @@ class WeatherScreen extends ConsumerWidget {
         ),
       ),
     );
+  }
+
+  void _handleCityChanged(City? newCity) {
+    setState(() {
+      _selectedCity = newCity ?? Cities.taipei;
+    });
   }
 
   Widget _buildForecastHeaderDivider() {

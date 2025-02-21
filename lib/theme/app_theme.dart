@@ -80,13 +80,6 @@ class AppTheme {
           ],
         ),
       ),
-      cardTheme: CardTheme(
-        color: Colors.black45,
-        elevation: 0,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-        ),
-      ),
     );
   }
 }

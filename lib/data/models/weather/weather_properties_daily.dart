@@ -13,7 +13,7 @@ class WeatherPropertiesDaily with _$WeatherPropertiesDaily {
     required List<double> temperature2mMax,
     required List<double> temperature2mMin,
     required List<double> uvIndexMax,
-    required List<int> precipitationSum,
+    required List<double> precipitationSum,
     required List<int> precipitationProbabilityMax,
     required List<double> windSpeed10mMax,
     required List<double> windGusts10mMax,
@@ -25,7 +25,7 @@ class WeatherPropertiesDaily with _$WeatherPropertiesDaily {
       temperature2mMax: List<double>.from(json['temperature_2m_max']),
       temperature2mMin: List<double>.from(json['temperature_2m_min']),
       uvIndexMax: List<double>.from(json['uv_index_max']),
-      precipitationSum: List<int>.from(json['precipitation_sum']),
+      precipitationSum: List<double>.from(json['precipitation_sum']),
       precipitationProbabilityMax:
           List<int>.from(json['precipitation_probability_max']),
       windSpeed10mMax: List<double>.from(json['wind_speed_10m_max']),

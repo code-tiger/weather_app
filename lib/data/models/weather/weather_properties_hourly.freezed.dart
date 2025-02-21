@@ -20,7 +20,7 @@ mixin _$WeatherPropertiesHourly {
   List<double> get temperatures2m => throw _privateConstructorUsedError;
   List<int> get relativeHumidities2m => throw _privateConstructorUsedError;
   List<double> get apparentTemperatures => throw _privateConstructorUsedError;
-  List<int> get precipitations => throw _privateConstructorUsedError;
+  List<double> get precipitations => throw _privateConstructorUsedError;
   List<int> get cloudCovers => throw _privateConstructorUsedError;
   List<int> get visibilities => throw _privateConstructorUsedError;
   List<double> get windSpeeds10m => throw _privateConstructorUsedError;
@@ -44,7 +44,7 @@ abstract class $WeatherPropertiesHourlyCopyWith<$Res> {
       List<double> temperatures2m,
       List<int> relativeHumidities2m,
       List<double> apparentTemperatures,
-      List<int> precipitations,
+      List<double> precipitations,
       List<int> cloudCovers,
       List<int> visibilities,
       List<double> windSpeeds10m,
@@ -97,7 +97,7 @@ class _$WeatherPropertiesHourlyCopyWithImpl<$Res,
       precipitations: null == precipitations
           ? _value.precipitations
           : precipitations // ignore: cast_nullable_to_non_nullable
-              as List<int>,
+              as List<double>,
       cloudCovers: null == cloudCovers
           ? _value.cloudCovers
           : cloudCovers // ignore: cast_nullable_to_non_nullable
@@ -132,7 +132,7 @@ abstract class _$$WeatherPropertiesHourlyImplCopyWith<$Res>
       List<double> temperatures2m,
       List<int> relativeHumidities2m,
       List<double> apparentTemperatures,
-      List<int> precipitations,
+      List<double> precipitations,
       List<int> cloudCovers,
       List<int> visibilities,
       List<double> windSpeeds10m,
@@ -184,7 +184,7 @@ class __$$WeatherPropertiesHourlyImplCopyWithImpl<$Res>
       precipitations: null == precipitations
           ? _value._precipitations
           : precipitations // ignore: cast_nullable_to_non_nullable
-              as List<int>,
+              as List<double>,
       cloudCovers: null == cloudCovers
           ? _value._cloudCovers
           : cloudCovers // ignore: cast_nullable_to_non_nullable
@@ -213,7 +213,7 @@ class _$WeatherPropertiesHourlyImpl extends _WeatherPropertiesHourly {
       required final List<double> temperatures2m,
       required final List<int> relativeHumidities2m,
       required final List<double> apparentTemperatures,
-      required final List<int> precipitations,
+      required final List<double> precipitations,
       required final List<int> cloudCovers,
       required final List<int> visibilities,
       required final List<double> windSpeeds10m,
@@ -263,9 +263,9 @@ class _$WeatherPropertiesHourlyImpl extends _WeatherPropertiesHourly {
     return EqualUnmodifiableListView(_apparentTemperatures);
   }
 
-  final List<int> _precipitations;
+  final List<double> _precipitations;
   @override
-  List<int> get precipitations {
+  List<double> get precipitations {
     if (_precipitations is EqualUnmodifiableListView) return _precipitations;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_precipitations);
@@ -362,7 +362,7 @@ abstract class _WeatherPropertiesHourly extends WeatherPropertiesHourly {
           required final List<double> temperatures2m,
           required final List<int> relativeHumidities2m,
           required final List<double> apparentTemperatures,
-          required final List<int> precipitations,
+          required final List<double> precipitations,
           required final List<int> cloudCovers,
           required final List<int> visibilities,
           required final List<double> windSpeeds10m,
@@ -379,7 +379,7 @@ abstract class _WeatherPropertiesHourly extends WeatherPropertiesHourly {
   @override
   List<double> get apparentTemperatures;
   @override
-  List<int> get precipitations;
+  List<double> get precipitations;
   @override
   List<int> get cloudCovers;
   @override

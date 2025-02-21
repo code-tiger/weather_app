@@ -25,4 +25,6 @@ class Cities {
     latitude: 22.6163,
     longitude: 120.3062,
   );
+
+  static List<City> allCities = [taipei, taichung, tainan, kaohsiung];
 }
