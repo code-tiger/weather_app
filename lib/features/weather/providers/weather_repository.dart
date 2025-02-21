@@ -4,6 +4,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:weather_app/core/constants/config.dart';
 import 'package:weather_app/data/models/weather/weather_datum.dart';
 import 'package:weather_app/data/models/weather/weather_properties.dart';
+import 'package:weather_app/data/models/weather/weather_properties_daily.dart';
 import 'package:weather_app/data/models/weather/weather_properties_hourly.dart';
 import 'package:weather_app/data/models/weather/weather_units.dart';
 
@@ -27,7 +28,7 @@ class WeatherRepository {
         'hourly':
             'temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,cloud_cover,visibility,wind_speed_10m,wind_direction_10m',
         'daily':
-            'temperature_2m_max,temperature_2m_min,uv_index_max,precipitation_sum,wind_speed_10m_max,wind_gusts_10m_max',
+            'temperature_2m_max,temperature_2m_min,uv_index_max,precipitation_sum,precipitation_probability_max,wind_speed_10m_max,wind_gusts_10m_max',
       },
     );
 
@@ -35,49 +36,14 @@ class WeatherRepository {
   }
 
   WeatherDatum getWeatherDatum(Map<String, dynamic> jsonData) {
-    // Parse the JSON string
-    // final Map<String, dynamic> jsonData = jsonString.startsWith('{')
-    //     ? json.decode(jsonString)
-    // Create WeatherUnits instance
     final weatherUnits = WeatherUnits.fromJson(jsonData['current_units']);
 
-    // Create WeatherProperties instance for current weather
     final currentWeather = WeatherProperties.fromJson(jsonData['current']);
 
     final hourlyWeather = WeatherPropertiesHourly.fromJson(jsonData['hourly']);
 
-    // Create WeatherPropertiesHourly instance
-    // final hourlyWeather = WeatherPropertiesHourly(
-    //   time: List<String>.from(jsonData['hourly']['time']),
-    //   temperature2m: List<double>.from(jsonData['hourly']['temperature_2m']),
-    //   relativeHumidity2m:
-    //       List<int>.from(jsonData['hourly']['relative_humidity_2m']),
-    //   apparentTemperature:
-    //       List<double>.from(jsonData['hourly']['apparent_temperature']),
-    //   precipitationProbability:
-    //       List<int>.from(jsonData['hourly']['precipitation_probability']),
-    //   visibility: List<int>.from(jsonData['hourly']['visibility']),
-    //   windSpeed10m: List<double>.from(jsonData['hourly']['wind_speed_10m']),
-    //   windDirection10m:
-    //       List<int>.from(jsonData['hourly']['wind_direction_10m']),
-    // );
+    final dailyWeather = WeatherPropertiesDaily.fromJson(jsonData['daily']);
 
-    // Create WeatherPropertiesDaily instance
-    // final dailyWeather = WeatherPropertiesDaily(
-    //   time: List<String>.from(jsonData['daily']['time']),
-    //   temperature2mMax:
-    //       List<double>.from(jsonData['daily']['temperature_2m_max']),
-    //   temperature2mMin:
-    //       List<double>.from(jsonData['daily']['temperature_2m_min']),
-    //   uvIndexMax: List<double>.from(jsonData['daily']['uv_index_max']),
-    //   precipitationSum: List<int>.from(jsonData['daily']['precipitation_sum']),
-    //   windSpeed10mMax:
-    //       List<double>.from(jsonData['daily']['wind_speed_10m_max']),
-    //   windGusts10mMax:
-    //       List<double>.from(jsonData['daily']['wind_gusts_10m_max']),
-    // );
-
-    // Create and return WeatherDatum instance
     return WeatherDatum(
       latitude: jsonData['latitude'],
       longitude: jsonData['longitude'],
@@ -88,7 +54,7 @@ class WeatherRepository {
       elevation: jsonData['elevation'],
       currentWeather: currentWeather,
       hourlyWeather: hourlyWeather,
-      // dailyWeather: dailyWeather,
+      dailyWeather: dailyWeather,
       weatherUnits: weatherUnits,
     );
   }

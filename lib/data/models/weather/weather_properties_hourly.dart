@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:weather_app/core/utils/weather_helper.dart';
 import 'package:weather_app/data/models/weather/weather_state.dart';
+import 'package:weather_app/data/models/weather/weather_units.dart';
 
 part 'weather_properties_hourly.freezed.dart';
 
@@ -34,7 +35,7 @@ class WeatherPropertiesHourly with _$WeatherPropertiesHourly {
 
   WeatherPropertiesHourly._();
 
-  List<HourlyWeatherDatum> getNext5Hours(String unit) {
+  List<HourlyWeatherDatum> getNext5Hours() {
     final now = DateTime.now();
 
     final currentHourIndex = times.indexWhere((timeStr) {
@@ -61,7 +62,8 @@ class WeatherPropertiesHourly with _$WeatherPropertiesHourly {
           double.tryParse(cloudCovers[hourIndex].toString()) ?? 0,
           double.tryParse(precipitations[hourIndex].toString()) ?? 0,
         ),
-        temperature: '${temperatures2m[hourIndex].toString()} $unit',
+        temperature:
+            '${temperatures2m[hourIndex].toString()} ${const WeatherUnits().temperature2m}',
       );
     });
 

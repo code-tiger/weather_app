@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: AppTheme.darkTheme,
       home: WeatherScreen(
-        city: Cities.kaohsiung,
+        city: Cities.taichung,
       ),
     );
   }

@@ -21,6 +21,8 @@ mixin _$WeatherPropertiesDaily {
   List<double> get temperature2mMin => throw _privateConstructorUsedError;
   List<double> get uvIndexMax => throw _privateConstructorUsedError;
   List<int> get precipitationSum => throw _privateConstructorUsedError;
+  List<int> get precipitationProbabilityMax =>
+      throw _privateConstructorUsedError;
   List<double> get windSpeed10mMax => throw _privateConstructorUsedError;
   List<double> get windGusts10mMax => throw _privateConstructorUsedError;
 
@@ -43,6 +45,7 @@ abstract class $WeatherPropertiesDailyCopyWith<$Res> {
       List<double> temperature2mMin,
       List<double> uvIndexMax,
       List<int> precipitationSum,
+      List<int> precipitationProbabilityMax,
       List<double> windSpeed10mMax,
       List<double> windGusts10mMax});
 }
@@ -68,6 +71,7 @@ class _$WeatherPropertiesDailyCopyWithImpl<$Res,
     Object? temperature2mMin = null,
     Object? uvIndexMax = null,
     Object? precipitationSum = null,
+    Object? precipitationProbabilityMax = null,
     Object? windSpeed10mMax = null,
     Object? windGusts10mMax = null,
   }) {
@@ -91,6 +95,10 @@ class _$WeatherPropertiesDailyCopyWithImpl<$Res,
       precipitationSum: null == precipitationSum
           ? _value.precipitationSum
           : precipitationSum // ignore: cast_nullable_to_non_nullable
+              as List<int>,
+      precipitationProbabilityMax: null == precipitationProbabilityMax
+          ? _value.precipitationProbabilityMax
+          : precipitationProbabilityMax // ignore: cast_nullable_to_non_nullable
               as List<int>,
       windSpeed10mMax: null == windSpeed10mMax
           ? _value.windSpeed10mMax
@@ -119,6 +127,7 @@ abstract class _$$WeatherPropertiesDailyImplCopyWith<$Res>
       List<double> temperature2mMin,
       List<double> uvIndexMax,
       List<int> precipitationSum,
+      List<int> precipitationProbabilityMax,
       List<double> windSpeed10mMax,
       List<double> windGusts10mMax});
 }
@@ -143,6 +152,7 @@ class __$$WeatherPropertiesDailyImplCopyWithImpl<$Res>
     Object? temperature2mMin = null,
     Object? uvIndexMax = null,
     Object? precipitationSum = null,
+    Object? precipitationProbabilityMax = null,
     Object? windSpeed10mMax = null,
     Object? windGusts10mMax = null,
   }) {
@@ -167,6 +177,10 @@ class __$$WeatherPropertiesDailyImplCopyWithImpl<$Res>
           ? _value._precipitationSum
           : precipitationSum // ignore: cast_nullable_to_non_nullable
               as List<int>,
+      precipitationProbabilityMax: null == precipitationProbabilityMax
+          ? _value._precipitationProbabilityMax
+          : precipitationProbabilityMax // ignore: cast_nullable_to_non_nullable
+              as List<int>,
       windSpeed10mMax: null == windSpeed10mMax
           ? _value._windSpeed10mMax
           : windSpeed10mMax // ignore: cast_nullable_to_non_nullable
@@ -181,13 +195,14 @@ class __$$WeatherPropertiesDailyImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$WeatherPropertiesDailyImpl implements _WeatherPropertiesDaily {
+class _$WeatherPropertiesDailyImpl extends _WeatherPropertiesDaily {
   _$WeatherPropertiesDailyImpl(
       {required final List<String> time,
       required final List<double> temperature2mMax,
       required final List<double> temperature2mMin,
       required final List<double> uvIndexMax,
       required final List<int> precipitationSum,
+      required final List<int> precipitationProbabilityMax,
       required final List<double> windSpeed10mMax,
       required final List<double> windGusts10mMax})
       : _time = time,
@@ -195,8 +210,10 @@ class _$WeatherPropertiesDailyImpl implements _WeatherPropertiesDaily {
         _temperature2mMin = temperature2mMin,
         _uvIndexMax = uvIndexMax,
         _precipitationSum = precipitationSum,
+        _precipitationProbabilityMax = precipitationProbabilityMax,
         _windSpeed10mMax = windSpeed10mMax,
-        _windGusts10mMax = windGusts10mMax;
+        _windGusts10mMax = windGusts10mMax,
+        super._();
 
   final List<String> _time;
   @override
@@ -241,6 +258,15 @@ class _$WeatherPropertiesDailyImpl implements _WeatherPropertiesDaily {
     return EqualUnmodifiableListView(_precipitationSum);
   }
 
+  final List<int> _precipitationProbabilityMax;
+  @override
+  List<int> get precipitationProbabilityMax {
+    if (_precipitationProbabilityMax is EqualUnmodifiableListView)
+      return _precipitationProbabilityMax;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_precipitationProbabilityMax);
+  }
+
   final List<double> _windSpeed10mMax;
   @override
   List<double> get windSpeed10mMax {
@@ -259,7 +285,7 @@ class _$WeatherPropertiesDailyImpl implements _WeatherPropertiesDaily {
 
   @override
   String toString() {
-    return 'WeatherPropertiesDaily(time: $time, temperature2mMax: $temperature2mMax, temperature2mMin: $temperature2mMin, uvIndexMax: $uvIndexMax, precipitationSum: $precipitationSum, windSpeed10mMax: $windSpeed10mMax, windGusts10mMax: $windGusts10mMax)';
+    return 'WeatherPropertiesDaily(time: $time, temperature2mMax: $temperature2mMax, temperature2mMin: $temperature2mMin, uvIndexMax: $uvIndexMax, precipitationSum: $precipitationSum, precipitationProbabilityMax: $precipitationProbabilityMax, windSpeed10mMax: $windSpeed10mMax, windGusts10mMax: $windGusts10mMax)';
   }
 
   @override
@@ -276,6 +302,9 @@ class _$WeatherPropertiesDailyImpl implements _WeatherPropertiesDaily {
                 .equals(other._uvIndexMax, _uvIndexMax) &&
             const DeepCollectionEquality()
                 .equals(other._precipitationSum, _precipitationSum) &&
+            const DeepCollectionEquality().equals(
+                other._precipitationProbabilityMax,
+                _precipitationProbabilityMax) &&
             const DeepCollectionEquality()
                 .equals(other._windSpeed10mMax, _windSpeed10mMax) &&
             const DeepCollectionEquality()
@@ -290,6 +319,7 @@ class _$WeatherPropertiesDailyImpl implements _WeatherPropertiesDaily {
       const DeepCollectionEquality().hash(_temperature2mMin),
       const DeepCollectionEquality().hash(_uvIndexMax),
       const DeepCollectionEquality().hash(_precipitationSum),
+      const DeepCollectionEquality().hash(_precipitationProbabilityMax),
       const DeepCollectionEquality().hash(_windSpeed10mMax),
       const DeepCollectionEquality().hash(_windGusts10mMax));
 
@@ -303,16 +333,18 @@ class _$WeatherPropertiesDailyImpl implements _WeatherPropertiesDaily {
           _$WeatherPropertiesDailyImpl>(this, _$identity);
 }
 
-abstract class _WeatherPropertiesDaily implements WeatherPropertiesDaily {
+abstract class _WeatherPropertiesDaily extends WeatherPropertiesDaily {
   factory _WeatherPropertiesDaily(
           {required final List<String> time,
           required final List<double> temperature2mMax,
           required final List<double> temperature2mMin,
           required final List<double> uvIndexMax,
           required final List<int> precipitationSum,
+          required final List<int> precipitationProbabilityMax,
           required final List<double> windSpeed10mMax,
           required final List<double> windGusts10mMax}) =
       _$WeatherPropertiesDailyImpl;
+  _WeatherPropertiesDaily._() : super._();
 
   @override
   List<String> get time;
@@ -325,6 +357,8 @@ abstract class _WeatherPropertiesDaily implements WeatherPropertiesDaily {
   @override
   List<int> get precipitationSum;
   @override
+  List<int> get precipitationProbabilityMax;
+  @override
   List<double> get windSpeed10mMax;
   @override
   List<double> get windGusts10mMax;
@@ -335,4 +369,237 @@ abstract class _WeatherPropertiesDaily implements WeatherPropertiesDaily {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$WeatherPropertiesDailyImplCopyWith<_$WeatherPropertiesDailyImpl>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$DailyWeatherDatum {
+  String get day => throw _privateConstructorUsedError;
+  WeatherState get weatherState => throw _privateConstructorUsedError;
+  String get rainProbability => throw _privateConstructorUsedError;
+  String get maxTemperature => throw _privateConstructorUsedError;
+  String get minTemperature => throw _privateConstructorUsedError;
+
+  /// Create a copy of DailyWeatherDatum
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $DailyWeatherDatumCopyWith<DailyWeatherDatum> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $DailyWeatherDatumCopyWith<$Res> {
+  factory $DailyWeatherDatumCopyWith(
+          DailyWeatherDatum value, $Res Function(DailyWeatherDatum) then) =
+      _$DailyWeatherDatumCopyWithImpl<$Res, DailyWeatherDatum>;
+  @useResult
+  $Res call(
+      {String day,
+      WeatherState weatherState,
+      String rainProbability,
+      String maxTemperature,
+      String minTemperature});
+
+  $WeatherStateCopyWith<$Res> get weatherState;
+}
+
+/// @nodoc
+class _$DailyWeatherDatumCopyWithImpl<$Res, $Val extends DailyWeatherDatum>
+    implements $DailyWeatherDatumCopyWith<$Res> {
+  _$DailyWeatherDatumCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of DailyWeatherDatum
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? day = null,
+    Object? weatherState = null,
+    Object? rainProbability = null,
+    Object? maxTemperature = null,
+    Object? minTemperature = null,
+  }) {
+    return _then(_value.copyWith(
+      day: null == day
+          ? _value.day
+          : day // ignore: cast_nullable_to_non_nullable
+              as String,
+      weatherState: null == weatherState
+          ? _value.weatherState
+          : weatherState // ignore: cast_nullable_to_non_nullable
+              as WeatherState,
+      rainProbability: null == rainProbability
+          ? _value.rainProbability
+          : rainProbability // ignore: cast_nullable_to_non_nullable
+              as String,
+      maxTemperature: null == maxTemperature
+          ? _value.maxTemperature
+          : maxTemperature // ignore: cast_nullable_to_non_nullable
+              as String,
+      minTemperature: null == minTemperature
+          ? _value.minTemperature
+          : minTemperature // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+
+  /// Create a copy of DailyWeatherDatum
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $WeatherStateCopyWith<$Res> get weatherState {
+    return $WeatherStateCopyWith<$Res>(_value.weatherState, (value) {
+      return _then(_value.copyWith(weatherState: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$DailyWeatherDatumImplCopyWith<$Res>
+    implements $DailyWeatherDatumCopyWith<$Res> {
+  factory _$$DailyWeatherDatumImplCopyWith(_$DailyWeatherDatumImpl value,
+          $Res Function(_$DailyWeatherDatumImpl) then) =
+      __$$DailyWeatherDatumImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String day,
+      WeatherState weatherState,
+      String rainProbability,
+      String maxTemperature,
+      String minTemperature});
+
+  @override
+  $WeatherStateCopyWith<$Res> get weatherState;
+}
+
+/// @nodoc
+class __$$DailyWeatherDatumImplCopyWithImpl<$Res>
+    extends _$DailyWeatherDatumCopyWithImpl<$Res, _$DailyWeatherDatumImpl>
+    implements _$$DailyWeatherDatumImplCopyWith<$Res> {
+  __$$DailyWeatherDatumImplCopyWithImpl(_$DailyWeatherDatumImpl _value,
+      $Res Function(_$DailyWeatherDatumImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of DailyWeatherDatum
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? day = null,
+    Object? weatherState = null,
+    Object? rainProbability = null,
+    Object? maxTemperature = null,
+    Object? minTemperature = null,
+  }) {
+    return _then(_$DailyWeatherDatumImpl(
+      day: null == day
+          ? _value.day
+          : day // ignore: cast_nullable_to_non_nullable
+              as String,
+      weatherState: null == weatherState
+          ? _value.weatherState
+          : weatherState // ignore: cast_nullable_to_non_nullable
+              as WeatherState,
+      rainProbability: null == rainProbability
+          ? _value.rainProbability
+          : rainProbability // ignore: cast_nullable_to_non_nullable
+              as String,
+      maxTemperature: null == maxTemperature
+          ? _value.maxTemperature
+          : maxTemperature // ignore: cast_nullable_to_non_nullable
+              as String,
+      minTemperature: null == minTemperature
+          ? _value.minTemperature
+          : minTemperature // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DailyWeatherDatumImpl implements _DailyWeatherDatum {
+  _$DailyWeatherDatumImpl(
+      {required this.day,
+      required this.weatherState,
+      required this.rainProbability,
+      required this.maxTemperature,
+      required this.minTemperature});
+
+  @override
+  final String day;
+  @override
+  final WeatherState weatherState;
+  @override
+  final String rainProbability;
+  @override
+  final String maxTemperature;
+  @override
+  final String minTemperature;
+
+  @override
+  String toString() {
+    return 'DailyWeatherDatum(day: $day, weatherState: $weatherState, rainProbability: $rainProbability, maxTemperature: $maxTemperature, minTemperature: $minTemperature)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DailyWeatherDatumImpl &&
+            (identical(other.day, day) || other.day == day) &&
+            (identical(other.weatherState, weatherState) ||
+                other.weatherState == weatherState) &&
+            (identical(other.rainProbability, rainProbability) ||
+                other.rainProbability == rainProbability) &&
+            (identical(other.maxTemperature, maxTemperature) ||
+                other.maxTemperature == maxTemperature) &&
+            (identical(other.minTemperature, minTemperature) ||
+                other.minTemperature == minTemperature));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, day, weatherState,
+      rainProbability, maxTemperature, minTemperature);
+
+  /// Create a copy of DailyWeatherDatum
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DailyWeatherDatumImplCopyWith<_$DailyWeatherDatumImpl> get copyWith =>
+      __$$DailyWeatherDatumImplCopyWithImpl<_$DailyWeatherDatumImpl>(
+          this, _$identity);
+}
+
+abstract class _DailyWeatherDatum implements DailyWeatherDatum {
+  factory _DailyWeatherDatum(
+      {required final String day,
+      required final WeatherState weatherState,
+      required final String rainProbability,
+      required final String maxTemperature,
+      required final String minTemperature}) = _$DailyWeatherDatumImpl;
+
+  @override
+  String get day;
+  @override
+  WeatherState get weatherState;
+  @override
+  String get rainProbability;
+  @override
+  String get maxTemperature;
+  @override
+  String get minTemperature;
+
+  /// Create a copy of DailyWeatherDatum
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DailyWeatherDatumImplCopyWith<_$DailyWeatherDatumImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

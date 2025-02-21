@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/data/models/weather/weather_properties_hourly.dart';
+import 'package:weather_app/theme/main_box_decoration.dart';
 
 class HourlyWeatherOverview extends StatelessWidget {
   final List<HourlyWeatherDatum>? hourlyWeatherData;
@@ -14,10 +15,7 @@ class HourlyWeatherOverview extends StatelessWidget {
 
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 12),
-      decoration: BoxDecoration(
-        color: Colors.black26,
-        borderRadius: BorderRadius.circular(16),
-      ),
+      decoration: MainBoxDecoration.weatherBoxDecoration,
       child: Column(
         children: [
           Row(

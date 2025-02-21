@@ -8,6 +8,7 @@ import 'package:weather_app/data/models/weather/weather_units.dart';
 import 'package:weather_app/features/weather/controllers/weather_screen_controller.dart';
 import 'package:weather_app/data/models/weather/weather_datum.dart';
 import 'package:weather_app/features/weather/widgets/current_weather_overview.dart';
+import 'package:weather_app/features/weather/widgets/daily_weather_overview.dart';
 import 'package:weather_app/features/weather/widgets/hourly_weather_overview.dart';
 import 'package:weather_app/features/weather/widgets/weather_info_block.dart';
 
@@ -85,9 +86,12 @@ class WeatherDatumScreen extends StatelessWidget {
             _buildForecastHeaderDivider(),
             const SizedBox(height: 16),
             HourlyWeatherOverview(
-              hourlyWeatherData: weatherDatum.hourlyWeather?.getNext5Hours(
-                      weatherDatum.weatherUnits.temperature2m) ??
-                  [],
+              hourlyWeatherData:
+                  weatherDatum.hourlyWeather?.getNext5Hours() ?? [],
+            ),
+            const SizedBox(height: 16),
+            DailyWeatherOverview(
+              weatherPropertiesDaily: weatherDatum.dailyWeather,
             ),
             // _build7HoursWeatherDetail(
             //   weatherDatum.hourlyWeather,
