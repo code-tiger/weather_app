@@ -1,4 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:weather_app/core/utils/weather_helper.dart';
+import 'package:weather_app/data/models/weather/weather_state.dart';
 
 part 'weather_properties.freezed.dart';
 
@@ -17,6 +19,27 @@ class WeatherProperties with _$WeatherProperties {
   }) = _WeatherProperties;
 
   WeatherProperties._();
+
+  factory WeatherProperties.fromJson(Map<String, dynamic> json) {
+    return WeatherProperties(
+      time: json['time'].toString(),
+      interval: json['interval'].toString(),
+      temperature2m: json['temperature_2m'].toString(),
+      relativeHumidity2m: json['relative_humidity_2m'].toString(),
+      apparentTemperature: json['apparent_temperature'].toString(),
+      precipitation: json['precipitation'].toString(),
+      cloudCover: json['cloud_cover'].toString(),
+      windSpeed10m: json['wind_speed_10m'].toString(),
+      windDirection10m: json['wind_direction_10m'].toString(),
+    );
+  }
+
+  WeatherState getWeatherState() {
+    return WeatherHelper.calculateWeatherState(
+      double.tryParse(cloudCover) ?? 0,
+      double.tryParse(precipitation) ?? 0,
+    );
+  }
 
   String getTime(String timeZoneAbbreviation) {
     return '${DateTime.parse(time).toLocal().toString().split('.')[0]} ($timeZoneAbbreviation)';
@@ -48,21 +71,5 @@ class WeatherProperties with _$WeatherProperties {
 
   String getWindDirection10m(String unit) {
     return '$windDirection10m $unit';
-  }
-
-  /// it takes the json data from the api and returns a WeatherProperties object
-  /// e.g. jsonData['current']
-  factory WeatherProperties.fromJson(Map<String, dynamic> json) {
-    return WeatherProperties(
-      time: json['time'].toString(),
-      interval: json['interval'].toString(),
-      temperature2m: json['temperature_2m'].toString(),
-      relativeHumidity2m: json['relative_humidity_2m'].toString(),
-      apparentTemperature: json['apparent_temperature'].toString(),
-      precipitation: json['precipitation'].toString(),
-      cloudCover: json['cloud_cover'].toString(),
-      windSpeed10m: json['wind_speed_10m'].toString(),
-      windDirection10m: json['wind_direction_10m'].toString(),
-    );
   }
 }

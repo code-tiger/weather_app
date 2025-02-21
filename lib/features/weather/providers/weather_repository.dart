@@ -4,6 +4,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:weather_app/core/constants/config.dart';
 import 'package:weather_app/data/models/weather/weather_datum.dart';
 import 'package:weather_app/data/models/weather/weather_properties.dart';
+import 'package:weather_app/data/models/weather/weather_properties_hourly.dart';
 import 'package:weather_app/data/models/weather/weather_units.dart';
 
 part 'weather_repository.g.dart';
@@ -24,7 +25,7 @@ class WeatherRepository {
         'current':
             'temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,cloud_cover,wind_speed_10m,wind_direction_10m',
         'hourly':
-            'temperature_2m,relative_humidity_2m,apparent_temperature,precipitation_probability,visibility,wind_speed_10m,wind_direction_10m',
+            'temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,cloud_cover,visibility,wind_speed_10m,wind_direction_10m',
         'daily':
             'temperature_2m_max,temperature_2m_min,uv_index_max,precipitation_sum,wind_speed_10m_max,wind_gusts_10m_max',
       },
@@ -42,6 +43,8 @@ class WeatherRepository {
 
     // Create WeatherProperties instance for current weather
     final currentWeather = WeatherProperties.fromJson(jsonData['current']);
+
+    final hourlyWeather = WeatherPropertiesHourly.fromJson(jsonData['hourly']);
 
     // Create WeatherPropertiesHourly instance
     // final hourlyWeather = WeatherPropertiesHourly(
@@ -84,7 +87,7 @@ class WeatherRepository {
       timezoneAbbreviation: jsonData['timezone_abbreviation'],
       elevation: jsonData['elevation'],
       currentWeather: currentWeather,
-      // hourlyWeather: hourlyWeather,
+      hourlyWeather: hourlyWeather,
       // dailyWeather: dailyWeather,
       weatherUnits: weatherUnits,
     );

@@ -7,6 +7,8 @@ import 'package:weather_app/data/models/weather/weather_properties_hourly.dart';
 import 'package:weather_app/data/models/weather/weather_units.dart';
 import 'package:weather_app/features/weather/controllers/weather_screen_controller.dart';
 import 'package:weather_app/data/models/weather/weather_datum.dart';
+import 'package:weather_app/features/weather/widgets/current_weather_overview.dart';
+import 'package:weather_app/features/weather/widgets/hourly_weather_overview.dart';
 import 'package:weather_app/features/weather/widgets/weather_info_block.dart';
 
 class WeatherScreen extends ConsumerWidget {
@@ -46,124 +48,82 @@ class WeatherDatumScreen extends StatelessWidget {
     required this.city,
   });
 
-  String get timeString => weatherDatum.currentWeather?.time ?? '';
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: const Text(
-          'Weather Details',
-        ),
-        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
       ),
-      body: SafeArea(
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: Image.network(
+              'https://picsum.photos/1280',
+            ).image,
+            fit: BoxFit.cover,
+            colorFilter: ColorFilter.mode(
+              Colors.black.withOpacity(0.5),
+              BlendMode.darken,
+            ),
+          ),
+        ),
         child: ListView(
           padding: const EdgeInsets.symmetric(
             horizontal: 16.0,
             vertical: 20.0,
           ),
           children: [
-            const Padding(
-              padding: EdgeInsets.only(bottom: 16.0),
-              child: Text(
-                'Current Weather',
-                style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+            CurrentWeatherOverview(
+              city: city,
+              currentWeather: weatherDatum.currentWeather,
+              weatherUnits: weatherDatum.weatherUnits,
+              timezoneAbbreviation: weatherDatum.timezoneAbbreviation,
             ),
-            WeatherInfoBlock(
-              title: 'City',
-              value: city.name,
+            const SizedBox(height: 16),
+            _buildForecastHeaderDivider(),
+            const SizedBox(height: 16),
+            HourlyWeatherOverview(
+              hourlyWeatherData: weatherDatum.hourlyWeather?.getNext5Hours(
+                      weatherDatum.weatherUnits.temperature2m) ??
+                  [],
             ),
-            WeatherInfoBlock(
-              title: 'Time',
-              value: weatherDatum.currentWeather
-                      ?.getTime(weatherDatum.timezoneAbbreviation) ??
-                  '',
-            ),
-            _buildCurrentWeatherDetail(
-              weatherDatum.currentWeather,
-              weatherDatum.weatherUnits,
-            ),
-            _build7DayWeatherDetail(
-              weatherDatum.dailyWeather,
-              weatherDatum.weatherUnits,
-            ),
-            _build7HoursWeatherDetail(
-              weatherDatum.hourlyWeather,
-              weatherDatum.weatherUnits,
-            ),
+            // _build7HoursWeatherDetail(
+            //   weatherDatum.hourlyWeather,
+            //   weatherDatum.weatherUnits,
+            // ),
+
+            // _buildCurrentWeatherDetail(
+            //   weatherDatum.currentWeather,
+            //   weatherDatum.weatherUnits,
+            // ),
+            // _build7DayWeatherDetail(
+            //   weatherDatum.dailyWeather,
+            //   weatherDatum.weatherUnits,
+            // ),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildCurrentWeatherDetail(
-    WeatherProperties? currentWeather,
-    WeatherUnits weatherUnits,
-  ) {
-    if (currentWeather == null) {
-      return const SizedBox.shrink();
-    }
-
-    return Column(
+  Widget _buildForecastHeaderDivider() {
+    return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        WeatherInfoBlock(
-          title: 'Apparent Temperature',
-          value: currentWeather.getApparentTemperature(
-            weatherUnits.apparentTemperature,
+        Text(
+          'Forecast',
+          style: TextStyle(
+            fontSize: 24,
+            color: Colors.white,
           ),
         ),
-        WeatherInfoBlock(
-          title: 'Precipitation',
-          value: currentWeather.getPrecipitation(
-            weatherUnits.precipitation,
-          ),
-        ),
-        WeatherInfoBlock(
-          title: 'Cloud Cover',
-          value: currentWeather.getCloudCover(
-            weatherUnits.cloudCover,
-          ),
-        ),
-        WeatherInfoBlock(
-          title: 'Wind Speed',
-          value: currentWeather.getWindSpeed10m(
-            weatherUnits.windSpeed10m,
-          ),
-        ),
-        WeatherInfoBlock(
-          title: 'Wind Direction',
-          value: currentWeather.getWindDirection10m(
-            weatherUnits.windDirection10m,
-          ),
-        ),
-        WeatherInfoBlock(
-          title: 'Relative Humidity',
-          value: currentWeather.getRelativeHumidity2m(
-            weatherUnits.relativeHumidity2m,
-          ),
+        SizedBox(height: 4),
+        Divider(
+          color: Color.fromRGBO(255, 255, 255, 0.5),
         ),
       ],
     );
-  }
-
-  Widget _build7DayWeatherDetail(
-    WeatherPropertiesDaily? dailyWeather,
-    WeatherUnits weatherUnits,
-  ) {
-    return const SizedBox.shrink();
-  }
-
-  Widget _build7HoursWeatherDetail(
-    WeatherPropertiesHourly? hourlyWeather,
-    WeatherUnits weatherUnits,
-  ) {
-    return const SizedBox.shrink();
   }
 }
