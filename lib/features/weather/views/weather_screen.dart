@@ -19,38 +19,9 @@ class WeatherScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncData = ref.watch(weatherScreenControllerProvider(city));
 
-    return asyncData.when(
-      data: (data) => WeatherDatumScreen(
-        weatherDatum: data,
-        city: city,
-      ),
-      error: (error, stack) => Center(
-        child: Text(
-          error.toString(),
-          textAlign: TextAlign.center,
-        ),
-      ),
-      loading: () => const Center(
-        child: CircularProgressIndicator(),
-      ),
-    );
-  }
-}
-
-class WeatherDatumScreen extends StatelessWidget {
-  final WeatherDatum weatherDatum;
-  final City city;
-
-  const WeatherDatumScreen({
-    super.key,
-    required this.weatherDatum,
-    required this.city,
-  });
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
+      backgroundColor: Colors.transparent,
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
@@ -64,40 +35,52 @@ class WeatherDatumScreen extends StatelessWidget {
             ),
           ),
         ),
-        child: ListView(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 16.0,
-            vertical: 20.0,
+        child: asyncData.when(
+          data: (WeatherDatum weatherDatum) => ListView(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 16.0,
+              vertical: 20.0,
+            ),
+            children: [
+              CurrentWeatherOverview(
+                city: city,
+                currentWeather: weatherDatum.currentWeather,
+                weatherUnits: weatherDatum.weatherUnits,
+                timezoneAbbreviation: weatherDatum.timezoneAbbreviation,
+              ),
+              const SizedBox(height: 16),
+              _buildForecastHeaderDivider(),
+              const SizedBox(height: 16),
+              HourlyWeatherOverview(
+                hourlyWeatherData:
+                    weatherDatum.hourlyWeather?.getNext5Hours() ?? [],
+              ),
+              const SizedBox(height: 16),
+              DailyWeatherOverview(
+                weatherPropertiesDaily: weatherDatum.dailyWeather,
+              ),
+              const SizedBox(height: 16),
+              CurrentWeatherDetails(
+                weatherProperties: weatherDatum.currentWeather,
+                weatherUnits: weatherDatum.weatherUnits,
+              ),
+              const SizedBox(height: 16),
+              Location(
+                latitude: weatherDatum.latitude,
+                longitude: weatherDatum.longitude,
+              ),
+            ],
           ),
-          children: [
-            CurrentWeatherOverview(
-              city: city,
-              currentWeather: weatherDatum.currentWeather,
-              weatherUnits: weatherDatum.weatherUnits,
-              timezoneAbbreviation: weatherDatum.timezoneAbbreviation,
+          error: (error, stack) => Center(
+            child: Text(
+              error.toString(),
+              textAlign: TextAlign.center,
+              style: const TextStyle(color: Colors.white),
             ),
-            const SizedBox(height: 16),
-            _buildForecastHeaderDivider(),
-            const SizedBox(height: 16),
-            HourlyWeatherOverview(
-              hourlyWeatherData:
-                  weatherDatum.hourlyWeather?.getNext5Hours() ?? [],
-            ),
-            const SizedBox(height: 16),
-            DailyWeatherOverview(
-              weatherPropertiesDaily: weatherDatum.dailyWeather,
-            ),
-            const SizedBox(height: 16),
-            CurrentWeatherDetails(
-              weatherProperties: weatherDatum.currentWeather,
-              weatherUnits: weatherDatum.weatherUnits,
-            ),
-            const SizedBox(height: 16),
-            Location(
-              latitude: weatherDatum.latitude,
-              longitude: weatherDatum.longitude,
-            ),
-          ],
+          ),
+          loading: () => const Center(
+            child: CircularProgressIndicator(),
+          ),
         ),
       ),
     );
