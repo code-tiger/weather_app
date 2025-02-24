@@ -39,9 +39,7 @@ class _WeatherScreenState extends ConsumerState<WeatherScreen> {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: Image.network(
-              'https://picsum.photos/1280',
-            ).image,
+            image: const AssetImage('background.webp'),
             fit: BoxFit.cover,
             colorFilter: ColorFilter.mode(
               Colors.black.withOpacity(0.5),

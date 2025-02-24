@@ -18,11 +18,17 @@ class HourlyWeatherOverview extends StatelessWidget {
       decoration: MainBoxDecoration.weatherBoxDecoration,
       child: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: hourlyWeatherData!
-                .map((e) => _buildHourlyWeatherItem(e))
-                .toList(),
+          LayoutBuilder(
+            builder: (context, constraints) {
+              final itemCount = constraints.maxWidth < 350 ? 4 : 5;
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: hourlyWeatherData!
+                    .take(itemCount)
+                    .map((e) => _buildHourlyWeatherItem(e))
+                    .toList(),
+              );
+            },
           ),
         ],
       ),
